@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Numerics;
-using ZeroElectric.Vinculum; // Raylibin nimiavaruus
+using ZeroElectric.Vinculum; 
 
 namespace Rogue
 {
     public class Game
     {
-        public static readonly int tileSize = 16; // Staattinen muuttuja
+        public static readonly int tileSize = 16; 
 
         private PlayerCharacter player;
         private GameMap? level01;
@@ -17,13 +17,12 @@ namespace Rogue
             GameLoop();
         }
 
-        // Alustaa pelin
+        
         private void Init()
-        {
-            // Pelaajan luominen
+        { 
             player = CreateCharacter();
 
-            // Karttatiedoston lataaminen
+           
             MapReader reader = new MapReader();
             try
             {
@@ -39,14 +38,14 @@ namespace Rogue
                 Environment.Exit(1);
             }
 
-            // Raylib-ikkunan alustaminen
+            
             Raylib.InitWindow(480, 270, "Rogue");
             Raylib.SetTargetFPS(60);
 
             player.position = new Vector2(1, 1);
         }
 
-        // Pelisilmukka
+        
         private void GameLoop()
         {
             while (!Raylib.WindowShouldClose())
@@ -58,40 +57,40 @@ namespace Rogue
             Raylib.CloseWindow();
         }
 
-        // Kysyy pelaajan nimen
+        
         private string AskName()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Valitse nimi: ");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Valitse nimi: ");
+            Console.ForegroundColor = ConsoleColor.Blue;
             while (true)
             {
                 string? playerName = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Red;
                 if (IsValidName(playerName))
                 {
                     return playerName!;
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\nNimessä on vääränlaisia merkkejä. \nKirjoita uudelleen:");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                 }
             }
         }
 
-        // Kysyy pelaajan rodun
+        
         private Race AskRace()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nValitse rotu:");
             Console.WriteLine(" 1 - Hevonen \n 2 - Possu \n 3 - Kana");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
             while (true)
             {
                 string? input = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Green;
                 switch (input)
                 {
                     case "1":
@@ -101,25 +100,25 @@ namespace Rogue
                     case "3":
                         return Race.Kana;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nVirheellinen valinta. Valitse uudelleen:");
                         Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nVirheellinen valinta. Valitse uudelleen:");
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         break;
                 }
             }
         }
 
-        // Kysyy pelaajan luokan
+        
         private Class AskClass()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nValitse tyyppi:");
             Console.WriteLine(" 1 - Puukko \n 2 - Pistooli");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
             while (true)
             {
                 string? input = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
                 switch (input)
                 {
                     case "1":
@@ -127,15 +126,15 @@ namespace Rogue
                     case "2":
                         return Class.Pistooli;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nVirheellinen valinta. Valitse uudelleen:");
                         Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nVirheellinen valinta. Valitse uudelleen:");
+                        Console.ForegroundColor = ConsoleColor.Red;
                         break;
                 }
             }
         }
 
-        // Luo pelaajan karakterin
+        
         private PlayerCharacter CreateCharacter()
         {
             string name = AskName();
@@ -148,19 +147,19 @@ namespace Rogue
                 type = type
             };
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\nPelaajan tiedot:");
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Pelaajan nimi: {player.name}\nPelaajan tyyppi: {player.type}\nPelaajan rotu: {player.race}");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nJatka painamalla mitä tahansa näppäintä:");
             Console.ReadKey();
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             return player;
         }
 
-        // Piirtää pelin
+        
         private void DrawGame()
         {
             Raylib.BeginDrawing();
@@ -191,7 +190,7 @@ namespace Rogue
             Raylib.EndDrawing();
         }
 
-        // Päivittää pelin tilaa
+        
         private void UpdateGame()
         {
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_UP))
@@ -212,7 +211,7 @@ namespace Rogue
             }
         }
 
-        // Tarkistaa nimen kelpoisuuden
+        
         private bool IsValidName(string? name)
         {
             if (string.IsNullOrEmpty(name)) return false;
