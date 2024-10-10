@@ -8,9 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JsonConverter.Abstractions" Version="0.5.0" />
+    <PackageReference Include="JsonConverter.Abstractions" Version="0.6.0" />
     <PackageReference Include="JsonSerializer" Version="1.0.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Raylib-CSharp-Vinculum" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>

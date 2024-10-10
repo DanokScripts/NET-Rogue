@@ -1,29 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Security.Cryptography.X509Certificates;
 using System.IO;
+using Newtonsoft.Json;
+using ZeroElectric.Vinculum;
 
 namespace Rogue
 {
     internal class MapReader
     {
-        public Map? LoadJSON(string filename)
+        public GameMap? LoadJSON(string filename)
         {
-            string fileContent;
             if (!File.Exists(filename))
             {
                 return null;
             }
-            using (StreamReader reader = File.OpenText(filename))
-            {
-                fileContent = reader.ReadToEnd();
-            }
-            Map? deserializedProduct = JsonConvert.DeserializeObject<Map>(fileContent);
-            return deserializedProduct;
+
+            string fileContent = File.ReadAllText(filename);
+            GameMap? deserializedMap = JsonConvert.DeserializeObject<GameMap>(fileContent);
+            return deserializedMap;
         }
     }
 }

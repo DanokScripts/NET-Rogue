@@ -1,4 +1,6 @@
-﻿namespace Rogue
+﻿using ZeroElectric.Vinculum;
+
+namespace Rogue
 {
     internal class Program
     {
